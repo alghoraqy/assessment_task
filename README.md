@@ -1,16 +1,8 @@
 # assessment_task
 
-A new Flutter project.
+assessment_task for ProMina Agency.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<img align="left" width="120" src="https://user-images.githubusercontent.com/88210924/188695719-9fdce548-8172-4315-8a90-f71463b2d294.jpg">
+<img align="left" width="120" src="https://user-images.githubusercontent.com/88210924/188695741-1055f0a3-615a-4ddc-8222-38f20eb82396.jpg">
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
