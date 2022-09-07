@@ -2,7 +2,7 @@
 
 assessment_task for ProMina Agency.
 
-video : https://drive.google.com/file/d/1edyDXuVJUFFRnAqRi5mWnXrYEf43-7qP/view?usp=sharing
+video : https://drive.google.com/file/d/1EG7dNWkDlhsm1HRjT_wSSfRvctOGDc-r/view?usp=sharing
 
 APK (contain 3 architecture (single apk 6 mb)) : https://drive.google.com/file/d/1nXMZMkS5sov92oWrJPHNf7hjHsXt29GI/view?usp=sharing
 
