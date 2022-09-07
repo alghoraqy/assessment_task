@@ -91,34 +91,49 @@ class CategoryRow extends StatelessWidget {
 class CategoryItem extends StatelessWidget {
   final Color backGroundColor;
   final String category;
+  final VoidCallback onPressed;
   const CategoryItem(
-      {Key? key, required this.category, required this.backGroundColor})
+      {Key? key,
+      required this.category,
+      required this.backGroundColor,
+      required this.onPressed})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(MediaQuery.of(context).size.height / 75),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.mainColor),
-          color: backGroundColor == Colors.white
-              ? Colors.white
-              : AppColors.mainColor),
-      child: Text(
-        category,
-        style: AppTextStyle.coloredTitle.copyWith(
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.all(MediaQuery.of(context).size.height / 75),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.mainColor),
             color: backGroundColor == Colors.white
-                ? AppColors.mainColor
-                : Colors.white,
-            fontSize: 20),
+                ? Colors.white
+                : AppColors.mainColor),
+        child: Text(
+          category,
+          style: AppTextStyle.coloredTitle.copyWith(
+              color: backGroundColor == Colors.white
+                  ? AppColors.mainColor
+                  : Colors.white,
+              fontSize: 20),
+        ),
       ),
     );
   }
 }
 
-class CategoryListView extends StatelessWidget {
+class CategoryListView extends StatefulWidget {
   final List<String> category;
   const CategoryListView({Key? key, required this.category}) : super(key: key);
+
+  @override
+  State<CategoryListView> createState() => _CategoryListViewState();
+}
+
+int categoryIndex = 0;
+
+class _CategoryListViewState extends State<CategoryListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -128,16 +143,24 @@ class CategoryListView extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return CategoryItem(
-                category: category[index],
-                backGroundColor:
-                    index == 0 ? AppColors.mainColor : Colors.white);
+              category: widget.category[index],
+              backGroundColor:
+                  index == categoryIndex ? AppColors.mainColor : Colors.white,
+              onPressed: () {
+                setState(() {
+                  categoryIndex = index;
+                });
+
+                /// SetState for just this Example
+              },
+            );
           },
           separatorBuilder: (context, index) {
             return const SizedBox(
               width: 10,
             );
           },
-          itemCount: category.length),
+          itemCount: widget.category.length),
     );
   }
 }

@@ -97,9 +97,16 @@ class MyAppbar extends StatelessWidget {
   }
 }
 
-class TopContainer extends StatelessWidget {
+class TopContainer extends StatefulWidget {
   const TopContainer({Key? key}) : super(key: key);
 
+  @override
+  State<TopContainer> createState() => _TopContainerState();
+}
+
+int calenderIndex = 0;
+
+class _TopContainerState extends State<TopContainer> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -184,11 +191,17 @@ class TopContainer extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return CalenderIcon(
-                            backgroundcolor:
-                                index == 0 ? AppColors.mainColor : Colors.white,
-                            daynum:
-                                '${index < 9 ? '0${index + 1}' : index + 1}',
-                            dayString: getDayString(index));
+                          backgroundcolor: calenderIndex == index
+                              ? AppColors.mainColor
+                              : Colors.white,
+                          daynum: '${index < 9 ? '0${index + 1}' : index + 1}',
+                          dayString: getDayString(index),
+                          onPressed: () {
+                            setState(() {
+                              calenderIndex = index;
+                            }); ////  I don't always use SetState , it just for that exapmle.
+                          },
+                        );
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(
@@ -272,12 +285,13 @@ class CalenderIcon extends StatelessWidget {
   final Color backgroundcolor;
   final String daynum;
   final String dayString;
-
+  final VoidCallback onPressed;
   const CalenderIcon({
     Key? key,
     required this.backgroundcolor,
     required this.daynum,
     required this.dayString,
+    required this.onPressed,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -287,7 +301,7 @@ class CalenderIcon extends StatelessWidget {
         elevation: 1,
         padding: EdgeInsets.zero,
         height: MediaQuery.of(context).size.height / 11.5,
-        onPressed: () {},
+        onPressed: onPressed,
         color: backgroundcolor,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
